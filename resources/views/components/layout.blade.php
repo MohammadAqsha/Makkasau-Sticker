@@ -22,15 +22,17 @@
                 </svg>
             </button>
             <div class="hidden md:flex items-center gap-14">
-                <nav class="flex gap-6 text-sm font-semibold">
+                <nav class="flex gap-20 text-sm font-semibold">
                     <a href="/" class="{{ request()->is('/') ? 'text-[#FDCB58]' : 'text-white hover:text-[#FDCB58]' }}">Beranda</a>
                     <a href="/galeri" class="{{ request()->is('galeri*') ? 'text-[#FDCB58]' : 'text-white hover:text-[#FDCB58]' }}">Galeri Produk</a>
                     <a href="#" class="text-white hover:text-[#FDCB58]">Layanan</a>
                     <a href="/pemesanan" class="{{ request()->is('pemesanan*') ? 'text-[#FDCB58]' : 'text-white hover:text-[#FDCB58]' }}">Pemesanan</a>
                     <a href="#" class="text-white hover:text-[#FDCB58]">Kontak</a>
-                    <a href="#" class="text-white hover:text-[#FDCB58]">Lacak Pesanan</a>
+                    <a href="{{ route('order.trackPage') }}" class="{{ request()->is('lacak') ? 'text-[#FDCB58]' : 'text-white hover:text-[#FDCB58]' }}">
+                        Lacak Pesanan
+                    </a>
                 </nav>                
-                <a href="#" class="bg-[#FDCB58] text-black font-semibold px-6 py-1.5 rounded-full hover:opacity-90">
+                <a href="{{ route('admin.login') }}" class="bg-[#FDCB58] text-black font-semibold px-6 py-1.5 rounded-full hover:opacity-90">
                     MASUK
                 </a>
             </div>
@@ -41,14 +43,16 @@
             <a href="#" class="block hover:text-[#FDCB58]">Layanan</a>
             <a href="{{ url('/pemesanan') }}" class="block hover:text-[#FDCB58]">Pemesanan</a>
             <a href="#" class="block hover:text-[#FDCB58]">Kontak</a>
-            <a href="#" class="block hover:text-[#FDCB58]">Lacak Pesanan</a>
-            <a href="#" class="block bg-[#FDCB58] text-black font-semibold px-4 py-2 rounded-full w-fit">
+            <a href="{{ route('order.trackPage') }}" class="{{ request()->is('lacak') ? 'text-[#FDCB58]' : 'text-white hover:text-[#FDCB58]' }}">
+                Lacak Pesanan
+            </a>
+            <a href="{{ route('admin.login') }}" class="block bg-[#FDCB58] text-black font-semibold px-4 py-2 rounded-full w-fit">
                 MASUK
             </a>
         </div>        
     </header>
     
-    <main class="flex-grow">
+    <main class="flex-1">
         {{ $slot }}
     </main>
     

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use Illuminate\Support\Facades\Storage;
+
 
 class OrderController extends Controller
 {
@@ -40,12 +42,18 @@ class OrderController extends Controller
         return view('order.preview', ['data' => $validated]);
     }
 
-    public function submit(Request $request)
+        public function submit(Request $request)
     {
         $validated = $request->all();
-    
+
         $generatedId = 'MS-' . now()->format('dm') . '-' . rand(1000, 9999);
-    
+
+        if (!empty($validated['stnk_file']) && \Storage::disk('public')->exists($validated['stnk_file'])) {
+            $newPath = 'stnk_files/' . basename($validated['stnk_file']);
+            \Storage::disk('public')->move($validated['stnk_file'], $newPath);
+            $validated['stnk_file'] = $newPath;
+        }
+
         $order = Order::create([
             'order_id' => $generatedId,
             'name' => $validated['name'],
@@ -62,12 +70,42 @@ class OrderController extends Controller
             'notes' => $validated['notes'] ?? null,
             'stnk_file' => $validated['stnk_file'] ?? null,
         ]);
-    
+
         return redirect()->route('order.success', ['id' => $order->order_id]);
     }
 
     public function success($id)
     {
         return view('order.success', ['order_id' => $id]);
+    }
+
+        public function trackPage(Request $request)
+    {
+        $order = null;
+
+        if ($request->has('order_id')) {
+            $order = Order::where('order_id', $request->order_id)->first();
+
+            if (!$order) {
+                return view('order.track')->with('error', 'ID Pesanan tidak ditemukan.');
+            }
+        }
+
+        return view('order.track', compact('order'));
+    }
+
+        public function track(Request $request)
+    {
+        $request->validate([
+            'order_id' => 'required|string'
+        ]);
+
+        $order = Order::where('order_id', $request->order_id)->first();
+
+        if (!$order) {
+            return redirect()->route('order.trackPage')->with('error', 'ID Pemesanan tidak ditemukan.');
+        }
+
+        return view('order.track', ['order' => $order]);
     }
 }
