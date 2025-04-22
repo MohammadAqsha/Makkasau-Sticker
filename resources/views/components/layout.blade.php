@@ -25,9 +25,7 @@
                 <nav class="flex gap-20 text-sm font-semibold">
                     <a href="/" class="{{ request()->is('/') ? 'text-[#FDCB58]' : 'text-white hover:text-[#FDCB58]' }}">Beranda</a>
                     <a href="/galeri" class="{{ request()->is('galeri*') ? 'text-[#FDCB58]' : 'text-white hover:text-[#FDCB58]' }}">Galeri Produk</a>
-                    <a href="#" class="text-white hover:text-[#FDCB58]">Layanan</a>
                     <a href="/pemesanan" class="{{ request()->is('pemesanan*') ? 'text-[#FDCB58]' : 'text-white hover:text-[#FDCB58]' }}">Pemesanan</a>
-                    <a href="#" class="text-white hover:text-[#FDCB58]">Kontak</a>
                     <a href="{{ route('order.trackPage') }}" class="{{ request()->is('lacak') ? 'text-[#FDCB58]' : 'text-white hover:text-[#FDCB58]' }}">
                         Lacak Pesanan
                     </a>
@@ -40,9 +38,7 @@
         <div x-show="open" class="md:hidden mt-4 space-y-6 text-sm font-semibold px-4">
             <a href="{{ url('/') }}" class="block hover:text-[#FDCB58]">Beranda</a>
             <a href="{{ url('/galeri') }}" class="block hover:text-[#FDCB58]">Galeri Produk</a>
-            <a href="#" class="block hover:text-[#FDCB58]">Layanan</a>
             <a href="{{ url('/pemesanan') }}" class="block hover:text-[#FDCB58]">Pemesanan</a>
-            <a href="#" class="block hover:text-[#FDCB58]">Kontak</a>
             <a href="{{ route('order.trackPage') }}" class="{{ request()->is('lacak') ? 'text-[#FDCB58]' : 'text-white hover:text-[#FDCB58]' }}">
                 Lacak Pesanan
             </a>

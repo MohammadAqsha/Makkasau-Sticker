@@ -19,9 +19,9 @@
                     class="bg-[#FDCB58] text-black font-semibold px-6 py-3 rounded-full hover:opacity-90 transition">
                     TENTANG KAMI
                 </a>
-                <a href="#kontak"
-                    class="border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-black transition">
-                    HUBUNGI KAMI
+                <a href="https://wa.link/nro7ao" target="_blank"
+                class="border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-black transition">
+                HUBUNGI KAMI
                 </a>
             </div>
         </div>
@@ -182,7 +182,7 @@
                         Sidenreng Rappang, Sulawesi Selatan<br>
                         91611
                     </p>
-                    <img src="{{ asset('images/map-preview.png') }}" class="rounded-md w-full" alt="Peta Lokasi">
+                    <img src="{{ asset('images/lokasi.png') }}" class="rounded-md w-full" alt="Peta Lokasi">
                 </div>
                 <div class="bg-[#f8f9fa] p-6 rounded-xl shadow-md w-[85%] max-w-[400px] mx-auto">
                     <div class="flex justify-center mb-10 relative">
