@@ -11,17 +11,78 @@
             </h1>
             <p class="text-base md:text-lg text-gray-200 max-w-3xl">
                 Makkasau Sticker menyediakan jasa pembuatan custom plat kendaraan premium dengan kualitas terbaik.
-                Kami memiliki komitmen untuk memberikan layanan terbaik sejak tahun 2015.
+                Kami memiliki komitmen untuk memberikan layanan terbaik sejak tahun 2013.
             </p>
 
             <div class="mt-10 md:mt-26 flex flex-wrap gap-4 md:gap-24 justify-center">
-                <a href="#tentang"
+                <!-- Tombol -->
+                <a href="#" onclick="openModal()"
                     class="bg-[#FDCB58] text-black font-semibold px-6 py-3 rounded-full hover:opacity-90 transition">
                     TENTANG KAMI
                 </a>
+
+                <!-- Modal Layer -->
+                <div id="tentangModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 z-50">
+                    <div class="bg-white rounded-xl p-8 max-w-2xl text-black relative transform scale-95 transition-transform duration-300">
+                        <h2 class="text-2xl font-bold mb-4">Tentang Makkasau Sticker</h2>
+                        <p class="mb-4">
+                            Makkasau Sticker adalah usaha yang berlokasi di Sulawesi Selatan, tepatnya di Pangkajene, Kabupaten Sidrap,
+                            yang telah beroperasi sejak tahun 2013 dengan komitmen memberikan layanan terbaik di bidang pembuatan custom plat kendaraan premium dan berbagai produk terkait dengan kualitas terbaik.
+                            Dengan pengalaman sekitar 10 tahun, Makkasau Sticker telah mengukuhkan diri sebagai penyedia jasa profesional yang ahli di bidangnya.
+                        </p>
+                        <p class="mb-4">
+                            Layanan yang disediakan Makkasau Sticker meliputi: <br>
+                            - Pembuatan plat nomor kendaraan custom dengan bahan akrilik premium <br>
+                            - Pembuatan stiker berbagai jenis <br>
+                            - Plakat <br>
+                            - Nomor rumah dari bahan akrilik <br>
+                            - Huruf timbul <br>
+                            - Nama tag <br>
+                            - Cutting stiker <br>
+                            - Cutting laser
+                        </p>
+                        <p class="mb-4">
+                            Makkasau Sticker memiliki keunggulan berupa alat pres plat yang telah dimodifikasi sendiri,
+                            yang memungkinkan proses produksi berjalan lebih efisien dan berkualitas tinggi.
+                            Selain itu, mereka juga menyediakan jasa pelatihan bagi orang-orang yang ingin belajar tentang proses pembuatan plat nomor dan stiker.
+                        </p>
+                        <p class="mb-4">
+                            Alamat usaha ini berada di Jalan Andi Makkasau, depan SD Negeri 11, Pangkajene, Sidrap, Sulawesi Selatan.
+                            Mereka juga aktif memasarkan produk dan layanan melalui media sosial seperti Instagram.
+                        </p>
+                        <p>
+                            Dengan pengalaman lebih dari satu dekade, inovasi dalam alat produksi, serta ragam layanan lengkap
+                            mulai dari plat nomor kendaraan hingga cutting laser, Makkasau Sticker menjadi pilihan utama di Sulawesi Selatan.
+                        </p>
+                        <!-- Tombol Close -->
+                        <button onclick="closeModal()"
+                            class="absolute top-2 right-2 text-gray-600 hover:text-black text-xl">
+                            ✖
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Script -->
+                <script>
+                    function openModal() {
+                        const modal = document.getElementById('tentangModal');
+                        modal.classList.remove('pointer-events-none', 'opacity-0');
+                        modal.firstElementChild.classList.remove('scale-95');
+                    }
+
+                    function closeModal() {
+                        const modal = document.getElementById('tentangModal');
+                        modal.classList.add('opacity-0');
+                        modal.firstElementChild.classList.add('scale-95');
+                        setTimeout(() => {
+                            modal.classList.add('pointer-events-none');
+                        }, 300);
+                    }
+                </script>
+
                 <a href="https://wa.link/nro7ao" target="_blank"
-                class="border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-black transition">
-                HUBUNGI KAMI
+                    class="border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-black transition">
+                    HUBUNGI KAMI
                 </a>
             </div>
         </div>
@@ -60,18 +121,18 @@
             </p>
             <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                 @foreach ($featuredProducts as $product)
-                    <div class="bg-white rounded-xl px-2 py-4 shadow-md">
-                        <div class="mb-4">
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->title }}"
-                                class="w-full h-48 object-cover rounded-t-xl rounded-b-xl">
-                        </div>
-                        <div class="px-3">
-                            <h3 class="text-[#0A3D62] font-bold text-xl mb-2 text-left">{{ $product->title }}</h3>
-                            <p class="text-base text-gray-600 text-left">
-                                {{ $product->description }}
-                            </p>
-                        </div>
+                <div class="bg-white rounded-xl px-2 py-4 shadow-md">
+                    <div class="mb-4">
+                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->title }}"
+                            class="w-full h-48 object-cover rounded-t-xl rounded-b-xl">
                     </div>
+                    <div class="px-3">
+                        <h3 class="text-[#0A3D62] font-bold text-xl mb-2 text-left">{{ $product->title }}</h3>
+                        <p class="text-base text-gray-600 text-left">
+                            {{ $product->description }}
+                        </p>
+                    </div>
+                </div>
                 @endforeach
             </div>
         </div>
@@ -201,21 +262,35 @@
                         </li>
                         <li class="flex gap-3 items-center">
                             <div class="w-6 flex justify-center ml-[7%]">
-                                <img src="{{ asset('images/icon-fb.png') }}" class="w-18 h-8" alt="Facebook">
+                                <img src="{{ asset('images/icon-wa.png') }}" class="w-18 h-8" alt="WhatsApp">
                             </div>
-                            <span>Makkasar Stiker</span>
+                            <a href="https://wa.link/nro7ao" target="_blank" class="text-black hover:underline">
+                                +62 8528-2534-171
+                            </a>
                         </li>
                         <li class="flex gap-3 items-center">
                             <div class="w-6 flex justify-center ml-[7%]">
-                                <img src="{{ asset('images/icon-wa.png') }}" class="w-18 h-8" alt="WhatsApp">
+                                <img src="{{ asset('images/icon-fb.png') }}" class="w-18 h-8" alt="Facebook">
                             </div>
-                            <span>+62 8528-2534-171</span>
+                            <a href="https://www.facebook.com/share/1H9vDuMYWK/" target="_blank" class="text-black hover:underline">
+                                Makkasar Stiker
+                            </a>
                         </li>
                         <li class="flex gap-3 items-center">
                             <div class="w-6 flex justify-center ml-[7%]">
                                 <img src="{{ asset('images/icon-ig.png') }}" class="w-18 h-8" alt="Instagram">
                             </div>
-                            <span>@makkasarstiker</span>
+                            <a href="https://www.instagram.com/makkasausticker?igsh=MTZvb2kxb2lpN3Jr" target="_blank" class="text-black hover:underline">
+                                @makkasarstiker
+                            </a>
+                        </li>
+                        <li class="flex gap-3 items-center">
+                            <div class="w-6 flex justify-center ml-[7%]">
+                                <img src="{{ asset('images/icon-tiktok.png') }}" class="w-18 h-8" alt="Tiktok">
+                            </div>
+                            <a href="https://www.tiktok.com/@makkasau.sticker?_t=ZS-8vk13Wdit3X&_r=1" target="_blank" class="text-black hover:underline">
+                                @makkasau.sticker
+                            </a>
                         </li>
                     </ul>
                 </div>
